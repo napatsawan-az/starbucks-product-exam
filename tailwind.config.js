@@ -3,7 +3,15 @@ import daisyui from "daisyui";
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        stbGray: "rgb(48, 48, 48)",
+        stbGreen: "rgb(6, 118, 85)",
+      },
+      fontFamily: {
+        mulish: ["Mulish"],
+      },
+    },
   },
   daisyui: {
     themes: ["light"],
