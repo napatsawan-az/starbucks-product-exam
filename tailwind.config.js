@@ -6,6 +6,7 @@ export default {
     extend: {
       colors: {
         stbGray: "rgb(48, 48, 48)",
+        stbLightGray: "rgb(214, 214, 214)",
         stbGreen: "rgb(6, 118, 85)",
       },
       fontFamily: {
