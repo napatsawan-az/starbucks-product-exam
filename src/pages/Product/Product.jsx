@@ -1,10 +1,10 @@
-import { Layout } from "../../components";
+import { Hero, Layout } from "../../components";
 
 const Product = () => {
   return (
     <>
       <Layout>
-        <h1 className="text-2xl font-bold mb-4">Products</h1>
+        <Hero />
       </Layout>
     </>
   );

@@ -7,7 +7,7 @@ const Layout = ({ children }) => {
     <>
       <div className="flex flex-col min-h-screen font-mulish">
         <Header />
-        <main className="flex-1 p-4">{children}</main>
+        <main>{children}</main>
         <Footer />
       </div>
     </>
