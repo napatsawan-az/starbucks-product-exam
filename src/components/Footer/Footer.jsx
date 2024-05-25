@@ -1,7 +1,12 @@
 const Footer = () => {
   return (
-    <footer className="bg-gray-800 text-white text-center p-4">
-      <p>&copy; 2024 Your Company. All rights reserved.</p>
+    <footer className="bg-stbGray text-white h-[41px]">
+      <div className="max-w-[1080px] mx-auto h-[17px] p-3 md:flex justify-between">
+        <p className="text-sm">
+          &copy; Coffee Concepts Retail Co.,Ltd. All rights
+        </p>
+        <p className="text-sm hidden md:block">Starbucks Thailand</p>
+      </div>
     </footer>
   );
 };

@@ -3,17 +3,12 @@ import { Link } from "react-router-dom";
 const Header = () => {
   return (
     <>
-      <header className="bg-gray-800 text-white p-4">
-        <nav>
-          <ul className="flex space-x-4">
-            <li>
-              <Link to="/" className="hover:text-gray-400">
-                Home
-              </Link>
-            </li>
-            <li>
-              <Link to="/products" className="hover:text-gray-400">
-                Products
+      <header className="bg-stbGray h-[72px] py-3">
+        <nav className="max-w-[1080px] mx-auto h-12 px-3">
+          <ul>
+            <li className="">
+              <Link to="/">
+                <img src="/logo.png" className="w-12 h-12" />
               </Link>
             </li>
           </ul>
