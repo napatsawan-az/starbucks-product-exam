@@ -1,6 +1,24 @@
-import { Card, Hero, Layout, Search } from "../../components";
+import { useEffect, useState } from "react";
+import { Hero, Layout, Search } from "../../components";
+import { Link } from "react-router-dom";
+import { getProducts } from "../../api/product";
 
 const Product = () => {
+  const [products, setProducts] = useState();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const data = await getProducts();
+      setProducts(data);
+      setLoading(false);
+    };
+
+    fetchProducts();
+  }, []);
+
+  if (loading) return <div>Loading...</div>;
+
   return (
     <>
       <Layout>
@@ -20,10 +38,32 @@ const Product = () => {
               </button>
             </div>
             <div className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-              <Card />
-              <Card />
-              <Card />
-              <Card />
+              {products.map((product) => {
+                return (
+                  <>
+                    <Link
+                      key={product.id}
+                      to={`/products/${product.id}`}
+                      className="card w-full bg-base-100 rounded-none"
+                    >
+                      <figure>
+                        <img src={product.image_url} alt={product.name} />
+                      </figure>
+                      <div className="card-body p-0">
+                        <h2 className="card-title mt-2 font-bold text-base">
+                          {product.name}
+                        </h2>
+                        <div className="card-actions mb-6">
+                          <div className="badge badge-neutral font-bold text-xs">
+                            {product.category}
+                          </div>
+                        </div>
+                        <p className="">{product.price} Baht</p>
+                      </div>
+                    </Link>
+                  </>
+                );
+              })}
             </div>
           </div>
         </div>
