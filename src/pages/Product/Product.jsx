@@ -18,6 +18,7 @@ const Product = () => {
           search: searchQuery,
           page: currentPage,
           limit: 12,
+          filter: "Whole Bean",
         };
         const filteredProducts = await getProducts(queryParams);
         setProducts(filteredProducts);
@@ -45,8 +46,103 @@ const Product = () => {
               setSearchQuery={setSearchQuery}
             />
           </div>
-          <div className="w-full md:w-[258px] mr-3 bg-red-300">
-            This is aside
+          <div className="w-full md:w-[258px] mr-3">
+            <div className="collapse bg-base-200 md:bg-white rounded-none md:collapse-open">
+              <input type="checkbox" />
+              <div className="collapse-title text-xl font-bold">Filter</div>
+              <div className="collapse-content">
+                <div>
+                  <p className="font-bold my-3 border-b-2 leading-10">
+                    Categories
+                  </p>
+                  <label className="flex mb-1">
+                    <input
+                      type="checkbox"
+                      className="checkbox checkbox-sm checkbox-success rounded-none mr-2"
+                    />
+                    Whole Bean
+                  </label>
+                  <label className="flex mb-1">
+                    <input
+                      type="checkbox"
+                      className="checkbox checkbox-sm checkbox-success rounded-none mr-2"
+                    />
+                    Starbucks Reserve
+                  </label>
+                  <label className="flex mb-1">
+                    <input
+                      type="checkbox"
+                      className="checkbox checkbox-sm checkbox-success rounded-none mr-2"
+                    />
+                    Starbucks VIA
+                  </label>
+                  <label className="flex mb-1">
+                    <input
+                      type="checkbox"
+                      className="checkbox checkbox-sm checkbox-success rounded-none mr-2"
+                    />
+                    Starbucks Origami
+                  </label>
+                  <label className="flex mb-1">
+                    <input
+                      type="checkbox"
+                      className="checkbox checkbox-sm checkbox-success rounded-none mr-2"
+                    />
+                    Teavana
+                  </label>
+                  <label className="flex mb-1">
+                    <input
+                      type="checkbox"
+                      className="checkbox checkbox-sm checkbox-success rounded-none mr-2"
+                    />
+                    Syrup
+                  </label>
+                </div>
+                <div>
+                  <p className="font-bold my-3 border-b-2 leading-10">Roast</p>
+                  <label className="flex mb-1">
+                    <input
+                      type="checkbox"
+                      className="checkbox checkbox-sm checkbox-success rounded-none mr-2"
+                    />
+                    Blonde
+                  </label>
+                  <label className="flex mb-1">
+                    <input
+                      type="checkbox"
+                      className="checkbox checkbox-sm checkbox-success rounded-none mr-2"
+                    />
+                    Medium
+                  </label>
+                  <label className="flex mb-1">
+                    <input
+                      type="checkbox"
+                      className="checkbox checkbox-sm checkbox-success rounded-none mr-2"
+                    />
+                    Dark
+                  </label>
+                </div>
+                <div>
+                  <p className="font-bold my-3 border-b-2 leading-10">
+                    Caffeine
+                  </p>
+                  <label className="flex mb-1">
+                    <input
+                      type="checkbox"
+                      className="checkbox checkbox-sm checkbox-success rounded-none mr-2"
+                    />
+                    Decaf
+                  </label>
+                  <label className="flex mb-1">
+                    <input
+                      type="checkbox"
+                      className="checkbox checkbox-sm checkbox-success rounded-none mr-2"
+                    />
+                    Regular
+                  </label>
+                </div>
+              </div>
+            </div>
           </div>
           <div className="md:w-[806px]">
             <div className="hidden md:flex gap-4">
