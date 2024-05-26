@@ -8,11 +8,17 @@ const Product = () => {
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
   const [error, setError] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageNumbers = [1, 2, 3];
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const queryParams = { search: searchQuery };
+        const queryParams = {
+          search: searchQuery,
+          page: currentPage,
+          limit: 12,
+        };
         const filteredProducts = await getProducts(queryParams);
         setProducts(filteredProducts);
         setLoading(false);
@@ -24,7 +30,7 @@ const Product = () => {
     };
 
     fetchProducts();
-  }, [searchQuery]);
+  }, [searchQuery, currentPage]);
 
   if (loading) return <div>Loading...</div>;
 
@@ -53,20 +59,35 @@ const Product = () => {
               </button>
             </div>
             {error ? (
-              <p className="mt-5 ml-10">
-                No products found for <br />
-                <span className="font-bold">{searchQuery}</span>
+              <p className="mt-5 md:ml-10">
+                Sorry, we couldn’t find any coffees that match your selection.
+                Please try again.
               </p>
             ) : (
-              <div className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-                {products.map((product) => {
-                  return (
+              <>
+                <div className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+                  {products.map((product) => (
                     <Link key={product.id} to={`/products/${product.id}`}>
                       <ProductCard product={product} />
                     </Link>
-                  );
-                })}
-              </div>
+                  ))}
+                </div>
+                <div className="join flex justify-center gap-3 mt-7">
+                  {pageNumbers.map((page) => (
+                    <button
+                      key={page}
+                      className={`btn btn-circle ${
+                        page === currentPage
+                          ? "btn-active bg-stbGreen hover:bg-stbGreen text-white"
+                          : ""
+                      }`}
+                      onClick={() => setCurrentPage(page)}
+                    >
+                      {page}
+                    </button>
+                  ))}
+                </div>
+              </>
             )}
           </div>
         </div>
