@@ -1,4 +1,4 @@
-const ProductSearch = () => {
+const ProductSearch = ({ searchQuery, setSearchQuery }) => {
   return (
     <>
       <label className="px-4 py-2 w-full border rounded-full flex items-center gap-2">
@@ -18,6 +18,8 @@ const ProductSearch = () => {
           type="text"
           placeholder="Starbucks Product"
           className="focus:outline-none w-full"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
         />
       </label>
     </>
