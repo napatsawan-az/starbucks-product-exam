@@ -6,7 +6,7 @@ const RouthPath = () => {
     <Routes>
       <Route path="/" element={<Product />} />
       <Route path="/products" element={<Product />} />
-      <Route path="/products/:id" element={<ProductDetail />} />
+      <Route path="/products/:productId" element={<ProductDetail />} />
     </Routes>
   );
 };
