@@ -1,3 +1,3 @@
-import Search from "./Search";
+import ProductSearch from "./ProductSearch";
 
-export default Search;
+export default ProductSearch;

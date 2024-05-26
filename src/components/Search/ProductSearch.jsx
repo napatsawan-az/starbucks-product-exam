@@ -1,4 +1,4 @@
-const Search = () => {
+const ProductSearch = () => {
   return (
     <>
       <label className="px-4 py-2 w-full border rounded-full flex items-center gap-2">
@@ -24,4 +24,4 @@ const Search = () => {
   );
 };
 
-export default Search;
+export default ProductSearch;
