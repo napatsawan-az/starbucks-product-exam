@@ -9,6 +9,9 @@ const Product = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [error, setError] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
+  const [selectCategory, setSelectCategory] = useState([]);
+  const [selectRoast, setSelectRoast] = useState([]);
+  const [selectCaffeine, setSelectCaffeine] = useState([]);
   const pageNumbers = [1, 2, 3];
 
   useEffect(() => {
@@ -18,7 +21,9 @@ const Product = () => {
           search: searchQuery,
           page: currentPage,
           limit: 12,
-          filter: "Whole Bean",
+          category: selectCategory,
+          roast: selectRoast,
+          caffeine: selectCaffeine,
         };
         const filteredProducts = await getProducts(queryParams);
         setProducts(filteredProducts);
@@ -31,9 +36,25 @@ const Product = () => {
     };
 
     fetchProducts();
-  }, [searchQuery, currentPage]);
+  }, [searchQuery, currentPage, selectCategory, selectRoast, selectCaffeine]);
 
   if (loading) return <div>Loading...</div>;
+
+  const handleFilterChange = (value, filterType) => {
+    const setFilterState = {
+      category: setSelectCategory,
+      roast: setSelectRoast,
+      caffeine: setSelectCaffeine,
+    }[filterType];
+
+    setFilterState((prevFilters) =>
+      prevFilters.includes(value)
+        ? prevFilters.filter((filter) => filter !== value)
+        : [...prevFilters, value]
+    );
+
+    setCurrentPage(1);
+  };
 
   return (
     <>
@@ -55,91 +76,58 @@ const Product = () => {
                   <p className="font-bold my-3 border-b-2 leading-10">
                     Categories
                   </p>
-                  <label className="flex mb-1">
-                    <input
-                      type="checkbox"
-                      className="checkbox checkbox-sm checkbox-success rounded-none mr-2"
-                    />
-                    Whole Bean
-                  </label>
-                  <label className="flex mb-1">
-                    <input
-                      type="checkbox"
-                      className="checkbox checkbox-sm checkbox-success rounded-none mr-2"
-                    />
-                    Starbucks Reserve
-                  </label>
-                  <label className="flex mb-1">
-                    <input
-                      type="checkbox"
-                      className="checkbox checkbox-sm checkbox-success rounded-none mr-2"
-                    />
-                    Starbucks VIA
-                  </label>
-                  <label className="flex mb-1">
-                    <input
-                      type="checkbox"
-                      className="checkbox checkbox-sm checkbox-success rounded-none mr-2"
-                    />
-                    Starbucks Origami
-                  </label>
-                  <label className="flex mb-1">
-                    <input
-                      type="checkbox"
-                      className="checkbox checkbox-sm checkbox-success rounded-none mr-2"
-                    />
-                    Teavana
-                  </label>
-                  <label className="flex mb-1">
-                    <input
-                      type="checkbox"
-                      className="checkbox checkbox-sm checkbox-success rounded-none mr-2"
-                    />
-                    Syrup
-                  </label>
+                  {[
+                    "Whole Bean",
+                    "Starbucks Reserve",
+                    "Starbucks VIA",
+                    "Starbucks Origami",
+                    "Teavana",
+                    "Syrup",
+                  ].map((category) => (
+                    <label key={category} className="flex mb-1">
+                      <input
+                        type="checkbox"
+                        className="checkbox checkbox-sm checkbox-success rounded-none mr-2"
+                        value={category}
+                        onChange={() =>
+                          handleFilterChange(category, "category")
+                        }
+                      />
+                      {category}
+                    </label>
+                  ))}
                 </div>
                 <div>
                   <p className="font-bold my-3 border-b-2 leading-10">Roast</p>
-                  <label className="flex mb-1">
-                    <input
-                      type="checkbox"
-                      className="checkbox checkbox-sm checkbox-success rounded-none mr-2"
-                    />
-                    Blonde
-                  </label>
-                  <label className="flex mb-1">
-                    <input
-                      type="checkbox"
-                      className="checkbox checkbox-sm checkbox-success rounded-none mr-2"
-                    />
-                    Medium
-                  </label>
-                  <label className="flex mb-1">
-                    <input
-                      type="checkbox"
-                      className="checkbox checkbox-sm checkbox-success rounded-none mr-2"
-                    />
-                    Dark
-                  </label>
+                  {["Blonde", "Medium", "Dark"].map((roast) => (
+                    <label key={roast} className="flex mb-1">
+                      <input
+                        type="checkbox"
+                        className="checkbox checkbox-sm checkbox-success rounded-none mr-2"
+                        value={roast}
+                        onChange={() => handleFilterChange(roast, "roast")}
+                      />
+                      {roast}
+                    </label>
+                  ))}
                 </div>
                 <div>
                   <p className="font-bold my-3 border-b-2 leading-10">
                     Caffeine
                   </p>
-                  <label className="flex mb-1">
-                    <input
-                      type="checkbox"
-                      className="checkbox checkbox-sm checkbox-success rounded-none mr-2"
-                    />
-                    Decaf
-                  </label>
-                  <label className="flex mb-1">
-                    <input
-                      type="checkbox"
-                      className="checkbox checkbox-sm checkbox-success rounded-none mr-2"
-                    />
-                    Regular
-                  </label>
+                  {["Decaf", "Regular"].map((caffeine) => (
+                    <label key={caffeine} className="flex mb-1">
+                      <input
+                        type="checkbox"
+                        className="checkbox checkbox-sm checkbox-success rounded-none mr-2"
+                        value={caffeine}
+                        onChange={() =>
+                          handleFilterChange(caffeine, "caffeine")
+                        }
+                      />
+                      {caffeine}
+                    </label>
+                  ))}
                 </div>
               </div>
             </div>
