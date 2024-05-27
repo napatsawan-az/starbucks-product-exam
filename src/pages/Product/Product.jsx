@@ -61,6 +61,12 @@ const Product = () => {
     setCurrentPage(1);
   };
 
+  const clearFilters = () => {
+    setSelectCategory([]);
+    setSelectRoast([]);
+    setSelectCaffeine([]);
+  };
+
   if (loading) return <Loading />;
 
   return (
@@ -75,7 +81,13 @@ const Product = () => {
             />
           </div>
           <div className="w-full md:w-[300px] mr-3">
-            <ProductFilter handleFilterChange={handleFilterChange} />
+            <ProductFilter
+              handleFilterChange={handleFilterChange}
+              clearFilters={clearFilters}
+              selectCategory={selectCategory}
+              selectRoast={selectRoast}
+              selectCaffeine={selectCaffeine}
+            />
           </div>
           <div className="md:w-[806px]">
             <div className="hidden md:flex gap-4">

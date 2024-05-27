@@ -1,4 +1,10 @@
-const ProductFilter = ({ handleFilterChange }) => {
+const ProductFilter = ({
+  handleFilterChange,
+  clearFilters,
+  selectCategory,
+  selectRoast,
+  selectCaffeine,
+}) => {
   const categories = [
     "Whole Bean",
     "Starbucks Reserve",
@@ -14,7 +20,15 @@ const ProductFilter = ({ handleFilterChange }) => {
     <>
       <div className="collapse bg-base-200 md:bg-white rounded-none md:collapse-open">
         <input type="checkbox" />
-        <div className="collapse-title text-xl font-bold">Filter</div>
+        <div className="collapse-title relative">
+          <div className="text-xl font-bold">Filter</div>
+          <button
+            className="btn text-stbGreen btn-sm btn-outline btn-success rounded-badge absolute right-3 top-4 z-10"
+            onClick={clearFilters}
+          >
+            Clear
+          </button>
+        </div>
         <div className="collapse-content">
           <div>
             <p className="font-bold my-3 border-b-2 leading-10">Categories</p>
@@ -24,6 +38,7 @@ const ProductFilter = ({ handleFilterChange }) => {
                   type="checkbox"
                   className="checkbox checkbox-sm checkbox-success rounded-none mr-2"
                   value={category}
+                  checked={selectCategory.includes(category)}
                   onChange={() => handleFilterChange(category, "category")}
                 />
                 {category}
@@ -38,6 +53,7 @@ const ProductFilter = ({ handleFilterChange }) => {
                   type="checkbox"
                   className="checkbox checkbox-sm checkbox-success rounded-none mr-2"
                   value={roast}
+                  checked={selectRoast.includes(roast)}
                   onChange={() => handleFilterChange(roast, "roast")}
                 />
                 {roast}
@@ -52,6 +68,7 @@ const ProductFilter = ({ handleFilterChange }) => {
                   type="checkbox"
                   className="checkbox checkbox-sm checkbox-success rounded-none mr-2"
                   value={caffeine}
+                  checked={selectCaffeine.includes(caffeine)}
                   onChange={() => handleFilterChange(caffeine, "caffeine")}
                 />
                 {caffeine}
