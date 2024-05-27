@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { RiAccountCircleFill } from "react-icons/ri";
 
 const Header = () => {
   return (
@@ -16,11 +17,7 @@ const Header = () => {
                 <p className="hidden md:block mr-3 text-white">
                   Napatsawan Armin
                 </p>
-                <img
-                  src="./src/assets/account.svg"
-                  alt="account"
-                  className="w-12 h-12"
-                />
+                <RiAccountCircleFill className="w-12 h-12 text-stbLightGray" />
               </div>
             </li>
           </ul>
