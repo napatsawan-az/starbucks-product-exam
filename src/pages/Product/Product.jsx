@@ -1,5 +1,11 @@
 import { useEffect, useState } from "react";
-import { Hero, Layout, ProductCard, ProductSearch } from "../../components";
+import {
+  Hero,
+  Layout,
+  ProductCard,
+  ProductFilter,
+  ProductSearch,
+} from "../../components";
 import { Link } from "react-router-dom";
 import { getProducts } from "../../api/product";
 
@@ -38,8 +44,6 @@ const Product = () => {
     fetchProducts();
   }, [searchQuery, currentPage, selectCategory, selectRoast, selectCaffeine]);
 
-  if (loading) return <div>Loading...</div>;
-
   const handleFilterChange = (value, filterType) => {
     const setFilterState = {
       category: setSelectCategory,
@@ -56,6 +60,8 @@ const Product = () => {
     setCurrentPage(1);
   };
 
+  if (loading) return <div>Loading...</div>;
+
   return (
     <>
       <Layout>
@@ -68,69 +74,7 @@ const Product = () => {
             />
           </div>
           <div className="w-full md:w-[258px] mr-3">
-            <div className="collapse bg-base-200 md:bg-white rounded-none md:collapse-open">
-              <input type="checkbox" />
-              <div className="collapse-title text-xl font-bold">Filter</div>
-              <div className="collapse-content">
-                <div>
-                  <p className="font-bold my-3 border-b-2 leading-10">
-                    Categories
-                  </p>
-                  {[
-                    "Whole Bean",
-                    "Starbucks Reserve",
-                    "Starbucks VIA",
-                    "Starbucks Origami",
-                    "Teavana",
-                    "Syrup",
-                  ].map((category) => (
-                    <label key={category} className="flex mb-1">
-                      <input
-                        type="checkbox"
-                        className="checkbox checkbox-sm checkbox-success rounded-none mr-2"
-                        value={category}
-                        onChange={() =>
-                          handleFilterChange(category, "category")
-                        }
-                      />
-                      {category}
-                    </label>
-                  ))}
-                </div>
-                <div>
-                  <p className="font-bold my-3 border-b-2 leading-10">Roast</p>
-                  {["Blonde", "Medium", "Dark"].map((roast) => (
-                    <label key={roast} className="flex mb-1">
-                      <input
-                        type="checkbox"
-                        className="checkbox checkbox-sm checkbox-success rounded-none mr-2"
-                        value={roast}
-                        onChange={() => handleFilterChange(roast, "roast")}
-                      />
-                      {roast}
-                    </label>
-                  ))}
-                </div>
-                <div>
-                  <p className="font-bold my-3 border-b-2 leading-10">
-                    Caffeine
-                  </p>
-                  {["Decaf", "Regular"].map((caffeine) => (
-                    <label key={caffeine} className="flex mb-1">
-                      <input
-                        type="checkbox"
-                        className="checkbox checkbox-sm checkbox-success rounded-none mr-2"
-                        value={caffeine}
-                        onChange={() =>
-                          handleFilterChange(caffeine, "caffeine")
-                        }
-                      />
-                      {caffeine}
-                    </label>
-                  ))}
-                </div>
-              </div>
-            </div>
+            <ProductFilter handleFilterChange={handleFilterChange} />
           </div>
           <div className="md:w-[806px]">
             <div className="hidden md:flex gap-4">
