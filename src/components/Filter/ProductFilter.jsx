@@ -20,13 +20,13 @@ const ProductFilter = ({
     <>
       <div className="collapse bg-base-200 md:bg-white rounded-none md:collapse-open">
         <input type="checkbox" />
-        <div className="collapse-title relative">
+        <div className="collapse-title relative md:pt-1">
           <div className="text-xl font-bold">Filter</div>
           <button
-            className="btn text-stbGreen btn-sm btn-outline btn-success rounded-badge absolute right-3 top-4 z-10"
+            className="btn text-stbGreen btn-sm btn-outline btn-success rounded-badge absolute right-3 top-4 md:top-1 z-10"
             onClick={clearFilters}
           >
-            Clear
+            X Clear
           </button>
         </div>
         <div className="collapse-content">
