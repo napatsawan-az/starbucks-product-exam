@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import {
   Hero,
   Layout,
+  Loading,
   ProductCard,
   ProductFilter,
   ProductSearch,
@@ -60,7 +61,7 @@ const Product = () => {
     setCurrentPage(1);
   };
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <Loading />;
 
   return (
     <>

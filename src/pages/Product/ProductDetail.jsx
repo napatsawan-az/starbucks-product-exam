@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { Layout, Rating } from "../../components";
+import { Layout, Loading, Rating } from "../../components";
 import { useEffect, useState } from "react";
 import { getProductById } from "../../api/product";
 
@@ -18,7 +18,7 @@ const ProductDetail = () => {
     fetchProduct();
   }, [productId]);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <Loading />;
   if (!product) return <div>Product not found</div>;
 
   return (
