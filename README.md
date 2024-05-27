@@ -1,6 +1,29 @@
 # Starbucks Product Examination (React)
 
-### Step to run project
+### Installation
 
-1. Install the project dependencies: `npm install`
-2. Run the following command: `npm run dev`
+1. Clone the repository
+
+```bash
+git clone https://github.com/napatsawan-az/starbucks-product-exam.git
+```
+
+2. Navigate to the project directory
+
+```bash
+cd starbucks-product-exam
+```
+
+3. Install the project dependencies
+
+```bash
+npm install
+```
+
+### Running the Project
+
+Run the following command
+
+```bash
+npm run dev
+```
