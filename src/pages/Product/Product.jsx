@@ -25,7 +25,7 @@ const Product = () => {
     const fetchProducts = async () => {
       try {
         const queryParams = {
-          search: searchQuery,
+          name: searchQuery,
           page: currentPage,
           limit: 12,
           category: selectCategory,
@@ -74,7 +74,7 @@ const Product = () => {
               setSearchQuery={setSearchQuery}
             />
           </div>
-          <div className="w-full md:w-[258px] mr-3">
+          <div className="w-full md:w-[300px] mr-3">
             <ProductFilter handleFilterChange={handleFilterChange} />
           </div>
           <div className="md:w-[806px]">
